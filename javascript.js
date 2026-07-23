@@ -5,22 +5,10 @@ function getComputerChoice() {
     return randomItem
 }
 
-function getHumanChoice() {
-    const buttonsContainer = document.querySelector('.btns')
-    buttonsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('rock')) humanChoice = 'rock';
-        else if (e.target.classList.contains('paper')) humanChoice = 'paper';
-        else if (e.target.classList.contains('scissors')) humanChoice = 'scissors';
-    })
-}
-
-
 let computerScore = 0
 let humanScore = 0
 
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase()
-  
     if (humanChoice == 'rock') {
         if (computerChoice == 'rock') {
 
@@ -54,23 +42,30 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 
+
     console.log("Human Choice: " + humanChoice)
     console.log("Computer Choice: " + computerChoice)
     
     console.log("Human Score: " + humanScore)
     console.log("Computer Score: " + computerScore)
 
-    return humanChoice
 }
 
 function playGame() {
-    let humanChoice = getHumanChoice()
-    let computerChoice = getComputerChoice()
-    while (humanChoice.toLowerCase() != 'q') {
+    const buttonsContainer = document.querySelector('.btns')
+    let humanChoice;
+    buttonsContainer.addEventListener('click', (e) => {
+
+        if (e.target.classList.contains('rock')) humanChoice = 'rock';
+        else if (e.target.classList.contains('paper')) humanChoice = 'paper';
+        else if (e.target.classList.contains('scissors')) humanChoice = 'scissors';
+
+        let computerChoice = getComputerChoice()
         playRound(humanChoice, computerChoice)
-        humanChoice = getHumanChoice()
-        computerChoice = getComputerChoice()
-    }
+
+    })
+
 }
+
 
 playGame()
