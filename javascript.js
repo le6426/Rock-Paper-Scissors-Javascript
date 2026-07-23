@@ -2,6 +2,8 @@ function getComputerChoice() {
     const answerList = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * answerList.length)
     const randomItem = answerList[randomIndex];
+
+
     return randomItem
 }
 
@@ -47,26 +49,67 @@ function playRound(humanChoice, computerChoice) {
 
     yourScoreText.textContent = `Your Score: ${humanScore}`;
     computerScoreText.textContent = `Computer Score: ${computerScore}`;
-    console.log("Human Choice: " + humanChoice)
-    console.log("Computer Choice: " + computerChoice)
-    
-    console.log("Human Score: " + humanScore)
-    console.log("Computer Score: " + computerScore)
 
 }
 
-function playGame() {
-    const buttonsContainer = document.querySelector('.btns')
-    let humanChoice;
-    buttonsContainer.addEventListener('click', (e) => {
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        if (e.target.classList.contains('rock')) humanChoice = 'rock';
-        else if (e.target.classList.contains('paper')) humanChoice = 'paper';
-        else if (e.target.classList.contains('scissors')) humanChoice = 'scissors';
+function playGame() {
+    const buttonsContainer = document.querySelector('.human-side')
+    let humanChoice;
+
+    rockSelector = document.querySelector('.rock')
+    paperSelector = document.querySelector('.paper')
+    scissorsSelector = document.querySelector('.scissors')
+
+
+
+
+    buttonsContainer.addEventListener('click', async (e) => {
+
+        if (e.target.classList.contains('rock')) {
+            humanChoice = 'rock'
+            paperSelector.style.opacity = 0;
+            scissorsSelector.style.opacity = 0;
+        }
+        else if (e.target.classList.contains('paper')) {
+            humanChoice = 'paper'
+            rockSelector.style.opacity = 0;
+            scissorsSelector.style.opacity = 0;
+        }
+        else if (e.target.classList.contains('scissors')) {
+            humanChoice = 'scissors'
+            rockSelector.style.opacity = 0;
+            paperSelector.style.opacity = 0;
+        };
 
         let computerChoice = getComputerChoice()
         playRound(humanChoice, computerChoice)
 
+        const computerRockSelector = document.querySelector('.computer-rock');
+        const computerPaperSelector = document.querySelector('.computer-paper');
+        const computerScissorsSelector = document.querySelector('.computer-scissors');
+        if (computerChoice == 'rock') {
+            computerPaperSelector.style.opacity = 0;
+            computerScissorsSelector.style.opacity = 0;
+        }
+        else if (computerChoice == 'paper') {
+            computerRockSelector.style.opacity = 0;
+            computerScissorsSelector.style.opacity = 0;
+        }
+        else if (computerChoice == 'scissors') {
+            computerRockSelector.style.opacity = 0;
+            computerPaperSelector.style.opacity = 0;
+        }
+        await delay(750)
+
+        rockSelector.style.opacity = '1';
+        paperSelector.style.opacity = '1';
+        scissorsSelector.style.opacity = '1';
+
+        computerRockSelector.style.opacity = '1';
+        computerPaperSelector.style.opacity = '1';
+        computerScissorsSelector.style.opacity = '1';
     })
 
 }
