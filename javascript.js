@@ -42,7 +42,11 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 
+    const yourScoreText = document.querySelector('.your-score');
+    const computerScoreText = document.querySelector('.computer-score');
 
+    yourScoreText.textContent = `Your Score: ${humanScore}`;
+    computerScoreText.textContent = `Computer Score: ${computerScore}`;
     console.log("Human Choice: " + humanChoice)
     console.log("Computer Choice: " + computerChoice)
     
