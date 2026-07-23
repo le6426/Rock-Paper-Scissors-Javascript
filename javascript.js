@@ -6,8 +6,12 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    const humanChoice = prompt("Enter: (Rock, Paper, Scissors) ")
-    return humanChoice
+    const buttonsContainer = document.querySelector('.btns')
+    buttonsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('rock')) humanChoice = 'rock';
+        else if (e.target.classList.contains('paper')) humanChoice = 'paper';
+        else if (e.target.classList.contains('scissors')) humanChoice = 'scissors';
+    })
 }
 
 
@@ -59,7 +63,7 @@ function playRound(humanChoice, computerChoice) {
     return humanChoice
 }
 
-function play() {
+function playGame() {
     let humanChoice = getHumanChoice()
     let computerChoice = getComputerChoice()
     while (humanChoice.toLowerCase() != 'q') {
@@ -69,4 +73,4 @@ function play() {
     }
 }
 
-play()
+playGame()
