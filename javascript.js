@@ -10,6 +10,9 @@ function getComputerChoice() {
 let computerScore = 0
 let humanScore = 0
 
+let humanScoreText = document.querySelector('.your-score')
+let computerScoreText = document.querySelector('.computer-score')
+
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == 'rock') {
         if (computerChoice == 'rock') {
@@ -17,37 +20,40 @@ function playRound(humanChoice, computerChoice) {
         }
         else if (computerChoice == 'paper') {
             computerScore++
+            computerScoreText.style.transform = 'scale(1.1)';
         }
         else if (computerChoice == 'scissors') {
             humanScore++
+            humanScoreText.style.transform = 'scale(1.1)';
         }
 
     } else if (humanChoice == 'paper') {
         if (computerChoice == 'rock') {
             humanScore++
+            humanScoreText.style.transform = 'scale(1.1)';
         }
         else if (computerChoice == 'paper') {
 
         }
         else if (computerChoice == 'scissors') {
             computerScore++
+            computerScoreText.style.transform = 'scale(1.1)';
         }
     } else if (humanChoice == 'scissors') {
         if (computerChoice == 'rock') {
             computerScore++
+            computerScoreText.style.transform = 'scale(1.1)';
         }
         else if (computerChoice == 'paper') {
             humanScore++
+            humanScoreText.style.transform = 'scale(1.1)';
         }
         else if (computerChoice == 'scissors') {
 
         }
     }
 
-    const yourScoreText = document.querySelector('.your-score');
-    const computerScoreText = document.querySelector('.computer-score');
-
-    yourScoreText.textContent = `Your Score: ${humanScore}`;
+    humanScoreText.textContent = `Your Score: ${humanScore}`;
     computerScoreText.textContent = `Computer Score: ${computerScore}`;
 
 }
@@ -55,12 +61,13 @@ function playRound(humanChoice, computerChoice) {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function playGame() {
-    const buttonsContainer = document.querySelector('.human-side')
+    const buttonsContainer = document.querySelector('.buttons')
     let humanChoice;
 
     rockSelector = document.querySelector('.rock')
     paperSelector = document.querySelector('.paper')
     scissorsSelector = document.querySelector('.scissors')
+
 
 
 
@@ -110,6 +117,9 @@ function playGame() {
         computerRockSelector.style.opacity = '1';
         computerPaperSelector.style.opacity = '1';
         computerScissorsSelector.style.opacity = '1';
+
+        computerScoreText.style.transform = 'scale(1)';
+        humanScoreText.style.transform = 'scale(1)';
     })
 
 }
